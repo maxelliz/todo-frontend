@@ -13,7 +13,17 @@
 </div>
 
 <ul class="todos">
-  <li *ngFor="let todo of todos | paginate: { itemsPerPage: 8, currentPage: page }">
+  <tr>
+  <th class="sort-by-id">ID
+    <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="idAsc"></i>
+    <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down sorting" id="idDesc"></i>
+  </th>
+  <th class="sort-by-description">Description
+    <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="descriptionAsc"></i>
+    <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="descriptionDesc"></i>
+  </th>
+  </tr>
+  <li *ngFor="let todo of todos | sort:direction:column:type | paginate: { itemsPerPage: 8, currentPage: page }">
     <button type="button" (click)="onSelect(todo)">
       <span class="badge">{{todo.id}}</span>
       <span class="description">{{todo.description}}</span>

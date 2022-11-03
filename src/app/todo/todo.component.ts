@@ -17,6 +17,9 @@ export class TodoComponent implements OnInit {
   todoId = 1;
   todoDone = false;
   page: number = 1;
+  direction: string = 'asc';
+  column: string = 'id';
+  type: string = 'number';
 
   constructor(private todoService: TodoService,
     private messageService: MessageService) { }
@@ -31,6 +34,12 @@ export class TodoComponent implements OnInit {
     this.todoDescription = todo.description;
     this.todoDone = todo.done;
     this.messageService.add('TodoComponent : selection de la tache id = ' + this.editTodo?.id);
+  }
+
+  setSortParams(param: any) {
+    this.direction = param.dir;
+    this.column = param.col;
+    this.type = param.typ;
   }
 
   getTodos(): void {

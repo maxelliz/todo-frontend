@@ -17,6 +17,9 @@ import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { PackageSearchComponent } from './package-search/package-search.component';
 
+import { SortPipe } from './todo/sort';
+import { SortParamsDirective } from './todo/sort.params';
+
 import { httpInterceptorProviders } from './http-interceptors/index';
 
 @NgModule({
@@ -25,7 +28,9 @@ import { httpInterceptorProviders } from './http-interceptors/index';
     TodoComponent,
     WeatherComponent,
     MessagesComponent,
-    PackageSearchComponent
+    PackageSearchComponent,
+    SortPipe,
+    SortParamsDirective
   ],
   imports: [
     BrowserModule,
