@@ -1,16 +1,49 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { AngularWeatherWidgetModule } from 'angular2-weather-widget';
+import { CommonModule } from '@angular/common';
+
+import { RequestCache, RequestCacheWithMap } from './request-cache.service';
 
 import { AppComponent } from './app.component';
+import { AuthService } from './auth.service';
+import { TodoComponent } from './todo/todo.component';
+import { WeatherComponent } from './weather/weather.component';
+import { HttpErrorHandler } from './http-error-handler.service';
+import { MessageService } from './message.service';
+import { MessagesComponent } from './messages/messages.component';
+import { PackageSearchComponent } from './package-search/package-search.component';
+
+import { httpInterceptorProviders } from './http-interceptors/index';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoComponent,
+    WeatherComponent,
+    MessagesComponent,
+    PackageSearchComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    AngularWeatherWidgetModule,
+    HttpClientModule,
+    CommonModule,
+    NgxPaginationModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService,
+    HttpErrorHandler,
+    MessageService,
+    { provide: RequestCache, useClass: RequestCacheWithMap },
+    httpInterceptorProviders
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

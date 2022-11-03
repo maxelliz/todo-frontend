@@ -1,0 +1,15 @@
+.meteo-button {
+	position: absolute;
+	right: 120px;
+}
+
+.refresh-button {
+	position: absolute;
+	right: 60px;
+}
+
+.meteo-contenu {
+	position: relative;
+	top:80px;
+	right: 30px;
+}

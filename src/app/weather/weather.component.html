@@ -1,0 +1,39 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="meteo">
+  <button type="button" class="meteo-button" (click)="getWeatherAndShow()">
+    {{meteo_message}}
+  </button>
+
+  <button type="button" class="refresh-button" [disabled]="!show" (click)="getWeather()">
+    <i class="fa fa-refresh"></i>
+  </button>
+  <br>
+
+  <div [hidden]="!show" class="meteo-contenu">
+  <label for="weather-name"><b>Localisation : </b></label>
+  <span class="name">{{localisation}}, {{pays}}</span>
+  <br>
+
+  <label for="weather-name"><b>Température : </b></label>
+  <span class="temp">{{temperature}}°C</span>
+  <br>
+
+  <label for="weather-name"><b>Température ressentie : </b></label>
+  <span class="temp-ressentie">{{temperature_ressentie}}°C</span>
+  <br>
+
+  <label for="weather-name"><b>Humidité : </b></label>
+  <span class="humidity">{{humidite}}%</span>
+  <br>
+
+  <label for="weather-name"><b>Vent : </b></label>
+  <span class="vent">{{vent_vitesse}} km/h {{vent_direction}}</span>
+  <br>
+
+  <label for="weather-name"><b>Nuages : </b></label>
+  <span class="nuages">{{nuages}}</span>
+  <br>
+  </div>
+</div>

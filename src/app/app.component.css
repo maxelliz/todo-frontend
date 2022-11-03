@@ -1,0 +1,29 @@
+h1 {
+  color: #A80000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 30px;
+  text-align: center;
+}
+
+app-todo {
+  float: left;
+}
+
+app-messages {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  float: right;
+  width: 30em;
+  height: 26em;
+}
+
+app-weather {
+  float: right;
+  height: 15em;
+}
+
+right-panel {
+  position: relative;
+}
