@@ -7,7 +7,7 @@ import { MessageService } from '../message.service';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  providers: [TodoService],
+  providers: [ TodoService ],
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
@@ -78,6 +78,7 @@ export class TodoComponent implements OnInit {
     this.todoService
       .addTodo(newTodo)
       .subscribe(todo => this.todos.push(todo));
+    this.getTodos();
   }
 
   delete(id: number): void {
@@ -111,6 +112,7 @@ export class TodoComponent implements OnInit {
         }
       });
       this.editTodo = undefined;
+      this.getTodos();
     }
   }
 

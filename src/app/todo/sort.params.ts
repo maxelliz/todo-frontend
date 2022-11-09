@@ -2,7 +2,7 @@ import { Directive,Output,EventEmitter,ElementRef,HostListener } from '@angular/
 
 @Directive({selector: '[appSortParams]'})
 
-export class SortParamsDirective {
+export class SortTodoParamsDirective {
 
 @Output() param:EventEmitter<any> = new EventEmitter();
 

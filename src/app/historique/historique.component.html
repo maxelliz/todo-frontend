@@ -1,0 +1,30 @@
+<ul class="historys">
+  <tr>
+    <th class="sort-by-id-todo">TodoID
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="idTodoAsc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="idTodoDesc"></i>
+    </th>
+    <th class="sort-by-description">Description
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="descriptionAsc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="descriptionDesc"></i>
+    </th>
+    <th class="sort-by-status">Statut
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="statutAsc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="statutDesc"></i>
+    </th>
+    <th class="sort-by-date">Date
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="dateAsc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="dateDesc"></i>
+    </th>
+  </tr>
+  <li *ngFor="let history of historys | sortHistory:direction:column:type | paginate: { itemsPerPage: 8, currentPage: page }">
+    <button type="button">
+      <span class="idTodo">{{history.idTodo}}</span>
+      <span class="todoDescription">{{history.todoDescription}}</span>
+      <span class="status">{{history.status}}</span>
+      <span class="date">{{history.date | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+    </button>
+  </li>
+  <br>
+  <pagination-controls class="my-pagination" [style.display]="historys.length > 8 ? 'block' : 'none'" (pageChange)="page = $event"></pagination-controls>
+</ul>

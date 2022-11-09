@@ -1,69 +1,71 @@
-<div class="search">
-  <button type="button" (click)="getTodos()">
-    Afficher tous les todo
-  </button>
-
-  <button type="button" (click)="getTodoDone()">
-    Afficher tous les todo terminés
-  </button>
-
-  <button type="button" (click)="getTodoInProgress()">
-    Afficher tous les todo en cours
-  </button>
-</div>
-
-<ul class="todos">
-  <tr>
-  <th class="sort-by-id">ID
-    <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="idAsc"></i>
-    <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down sorting" id="idDesc"></i>
-  </th>
-  <th class="sort-by-description">Description
-    <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="descriptionAsc"></i>
-    <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="descriptionDesc"></i>
-  </th>
-  </tr>
-  <li *ngFor="let todo of todos | sort:direction:column:type | paginate: { itemsPerPage: 8, currentPage: page }">
-    <button type="button" (click)="onSelect(todo)">
-      <span class="badge">{{todo.id}}</span>
-      <span class="description">{{todo.description}}</span>
-      <span class="done">{{todo.done}}</span>
+<span class="general">
+  <span class="display">
+    <button type="button" (click)="getTodos()">
+      Afficher tous les todo
     </button>
-  </li>
-  <br>
-  <pagination-controls class="my-pagination" [style.display]="todos.length > 8 ? 'block' : 'none'" (pageChange)="page = $event"></pagination-controls>
-</ul>
 
-<div class="search-by-id">
-  <label for="todos-by-id">ID : </label>
-  <input type="number" [(ngModel)]="todoId" id="todos-get-by-id">&nbsp;
+    <button type="button" (click)="getTodoDone()">
+      Afficher tous les todo terminés
+    </button>
 
-  <button type="button" (click)="getTodoById(todoId)">
-    Rechercher un certain todo
-  </button>
+    <button type="button" (click)="getTodoInProgress()">
+      Afficher tous les todo en cours
+    </button>
+  </span>
 
-  <button type="button" (click)="delete(todoId)">
-  Supprimer le todo
-  </button>
-</div>
+  <ul class="todos">
+    <tr>
+    <th class="sort-by-id">ID
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="idAsc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down sorting" id="idDesc"></i>
+    </th>
+    <th class="sort-by-description">Description
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="descriptionAsc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="descriptionDesc"></i>
+    </th>
+    </tr>
+    <li *ngFor="let todo of todos | sortTodo:direction:column:type | paginate: { itemsPerPage: 8, currentPage: page }">
+      <button type="button" (click)="onSelect(todo)">
+        <span class="badge">{{todo.id}}</span>
+        <span class="description">{{todo.description}}</span>
+        <span class="done">{{todo.done}}</span>
+      </button>
+    </li>
+    <br>
+    <pagination-controls class="my-pagination" [style.display]="todos.length > 8 ? 'block' : 'none'" (pageChange)="page = $event"></pagination-controls>
+  </ul>
 
-<div class="search">
-  <label for="todo-description">Description : </label>
-  <input type="text" [(ngModel)]="todoDescription" id="todo-description">&nbsp;
+  <span class="search-by-id">
+    <label for="todos-by-id">ID : </label>
+    <input type="number" [(ngModel)]="todoId" id="todos-get-by-id">&nbsp;
 
-  <button type="button" (click)="search(todoDescription)">
-    Rechercher avec la description
-  </button>
+    <button type="button" (click)="getTodoById(todoId)">
+      Rechercher un certain todo
+    </button>
 
-  <button type="button" [disabled]="!todoDescription"
-    (click)="add(todoDescription)">
-    Ajouter un todo
-  </button>
-</div>
+    <button type="button" (click)="delete(todoId)">
+    Supprimer le todo
+    </button>
+  </span>
 
-<div class="update">
-  <label for="todo-description">Done : </label>
-  <input type="checkbox" [(ngModel)]="todoDone" id="todo-update-done">&nbsp;
+  <span class="search">
+    <label for="todo-description">Description : </label>
+    <input type="text" [(ngModel)]="todoDescription" id="todo-description">&nbsp;
 
-  <button type="button" (click)="update(todoId, todoDescription, todoDone)">Mettre a jour le todo</button>
-</div>
+    <button type="button" (click)="search(todoDescription)">
+      Rechercher avec la description
+    </button>
+
+    <button type="button" [disabled]="!todoDescription"
+      (click)="add(todoDescription)">
+      Ajouter un todo
+    </button>
+  </span>
+
+  <span class="update">
+    <label for="todo-description">Done : </label>
+    <input type="checkbox" [(ngModel)]="todoDone" id="todo-update-done">&nbsp;
+
+    <button type="button" (click)="update(todoId, todoDescription, todoDone)">Mettre a jour le todo</button>
+  </span>
+</span>
