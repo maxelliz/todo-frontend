@@ -65,6 +65,7 @@
 
 .todos .description {
   align-self: center;
+  width: 20em;
 }
 
 .todos .done {
@@ -79,6 +80,11 @@
   width: 3em;
 }
 
+.todos .date {
+  width: 8em;
+  padding-top : 7px;
+}
+
 .my-pagination ::ng-deep .ngx-pagination .current {
   background: #A80000;
 }
@@ -89,11 +95,15 @@
 }
 
 .sort-by-id {
-  padding-left: 10px;
+  padding-left: 16px;
 }
 
 .sort-by-description {
-  padding-left: 115px;
+  padding-left: 165px;
+}
+
+.sort-by-date {
+  padding-left: 210px;
 }
 
 .search-by-id {

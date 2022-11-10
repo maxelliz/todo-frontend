@@ -20,13 +20,18 @@ selectSort(id: string) {
 		case 'idDesc':
 			this.param.emit({dir:'desc', col:'id', typ:'number'})
 			break;
-		case 'descriptionAsc':
+		case 'todoDescriptionAsc':
 			this.param.emit({dir:'asc', col:'description', typ:'string'})
 			break;
-		case 'descriptionDesc':
+		case 'todoDescriptionDesc':
 			this.param.emit({dir:'desc', col:'description', typ:'string'})
 			break;
-
+		case 'todoDateAsc' :
+			this.param.emit({dir:'asc', col:'targetDate', typ:'Date'})
+			break;
+		case 'todoDateDesc' :
+			this.param.emit({dir:'desc', col:'targetDate', typ:'Date'})
+			break;
 		}
 	}
 }

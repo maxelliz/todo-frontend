@@ -14,7 +14,7 @@ export class SortTodoPipe implements PipeTransform{
 	sortAscending(items: Todo[], column: string, type: string) {
 		return [...items.sort(function(a: any, b: any): number {
 			if(type === 'string') {
-				if (a[column] != undefined && b[column] != undefined && a[column].toUpperCase() < b[column].toUpperCase()) {
+				if (a[column].toUpperCase() < b[column].toUpperCase()) {
 					return -1;
 				} else {
 					return 0;
@@ -28,7 +28,7 @@ export class SortTodoPipe implements PipeTransform{
 	sortDescending(items: Todo[], column: string, type: string) {
 		return [...items.sort(function(a: any, b: any): number {
 			if(type === 'string') {
-				if (a[column] != undefined && b[column] != undefined && a[column].toUpperCase() > b[column].toUpperCase()) {
+				if (a[column].toUpperCase() > b[column].toUpperCase()) {
 					return -1;
 				} else {
 					return 0;

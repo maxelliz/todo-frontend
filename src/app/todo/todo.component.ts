@@ -16,6 +16,8 @@ export class TodoComponent implements OnInit {
   todoDescription = '';
   todoId = 1;
   todoDone = false;
+  todayDate = new Date();
+  todoTargetDate = new Date();
   page: number = 1;
   direction: string = 'asc';
   column: string = 'id';
@@ -33,6 +35,7 @@ export class TodoComponent implements OnInit {
     this.todoId = todo.id;
     this.todoDescription = todo.description;
     this.todoDone = todo.done;
+    this.todoTargetDate = todo.targetDate;
     this.messageService.add('TodoComponent : selection de la tache id = ' + this.editTodo?.id);
   }
 
@@ -64,17 +67,20 @@ export class TodoComponent implements OnInit {
       .subscribe(todos => (this.todos = todos));
   }
 
-  add(description: string): void {
+  add(description: string, targetDate: Date): void {
     this.editTodo = undefined;
     description = description.trim();
     if (!description) {
       return;
     }
+    if (!targetDate) {
+      targetDate = new Date();
+    } 
 
     // The server will generate the id for this new hero
     const id: number = this.todos[this.todos.length - 1].id + 1;
     const done: boolean = false;
-    const newTodo: Todo = { id, description, done } as Todo;
+    const newTodo: Todo = { id, description, done, targetDate } as Todo;
     this.todoService
       .addTodo(newTodo)
       .subscribe(todo => this.todos.push(todo));
@@ -99,11 +105,11 @@ export class TodoComponent implements OnInit {
     }
   }
 
-  update(todoId: number, todoDescription: string, todoDone: boolean) {
+  update(todoId: number, todoDescription: string, todoDone: boolean, todoTargetDate: Date) {
     this.editTodo = this.todos[this.todos.findIndex(t => t.id === todoId)];
     if (todoId && todoDescription && this.editTodo) {
       this.todoService
-        .updateTodo({...this.editTodo, id: todoId, description: todoDescription, done: todoDone})
+        .updateTodo({...this.editTodo, id: todoId, description: todoDescription, done: todoDone, targetDate: todoTargetDate})
         .subscribe(todo => {
         // replace the todo in the todos list with update from server
         const ix = todo ? this.todos.findIndex(t => t.id === todo.id) : -1;

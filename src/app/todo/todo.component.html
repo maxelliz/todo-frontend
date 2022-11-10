@@ -15,19 +15,24 @@
 
   <ul class="todos">
     <tr>
-    <th class="sort-by-id">ID
+    <th class="sort-by-id">&nbsp;&nbsp;ID&nbsp;&nbsp;
       <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="idAsc"></i>
       <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down sorting" id="idDesc"></i>
     </th>
     <th class="sort-by-description">Description
-      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="descriptionAsc"></i>
-      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="descriptionDesc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="todoDescriptionAsc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="todoDescriptionDesc"></i>
+    </th>
+    <th class="sort-by-date">Date
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-up" id="todoDateAsc"></i>
+      <i appSortParams (param)="setSortParams($event)" class="fa fa-arrow-down" id="todoDateDesc"></i>
     </th>
     </tr>
     <li *ngFor="let todo of todos | sortTodo:direction:column:type | paginate: { itemsPerPage: 8, currentPage: page }">
       <button type="button" (click)="onSelect(todo)">
         <span class="badge">{{todo.id}}</span>
         <span class="description">{{todo.description}}</span>
+        <span class="date">{{todo.targetDate | date:'dd/MM/yyyy'}}</span>
         <span class="done">{{todo.done}}</span>
       </button>
     </li>
@@ -51,13 +56,14 @@
   <span class="search">
     <label for="todo-description">Description : </label>
     <input type="text" [(ngModel)]="todoDescription" id="todo-description">&nbsp;
+    <input type="Date" value="2013-01-08" [(ngModel)]="todoTargetDate" name="todoTargetDate" id="todo-target-date">&nbsp;
 
     <button type="button" (click)="search(todoDescription)">
       Rechercher avec la description
     </button>
 
     <button type="button" [disabled]="!todoDescription"
-      (click)="add(todoDescription)">
+      (click)="add(todoDescription, todoTargetDate)">
       Ajouter un todo
     </button>
   </span>
@@ -66,6 +72,6 @@
     <label for="todo-description">Done : </label>
     <input type="checkbox" [(ngModel)]="todoDone" id="todo-update-done">&nbsp;
 
-    <button type="button" (click)="update(todoId, todoDescription, todoDone)">Mettre a jour le todo</button>
+    <button type="button" (click)="update(todoId, todoDescription, todoDone, todoTargetDate)">Mettre a jour le todo</button>
   </span>
 </span>
